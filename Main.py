@@ -1,4 +1,7 @@
-class Main:
+from GUI.AppGui import AppGui
 
+
+class Main:
     if __name__ == "__main__":
-        print("Hello World")
+        app = AppGui()
+        app.run()
