@@ -9,28 +9,36 @@ class AppGui(tk.Tk):
         self.btn_click = None
         self.btn = None
         self.title("Sickness detector")
-        self.geometry("500x500")
+        self.geometry("1440x1100")
+        self.background()
         self.resizable(False, False)
         self.create_widgets()
-        self.background("white")
         self.set_icon()
 
     # TODO change it into picture later
     # Set background
-    def background(self, color):
-        self.configure(bg=color)
+    def background(self):
+        image = tk.PhotoImage(file="GUI/Images/img2.png")
+        background = tk.Label(self, image=image)
+        background.place(relx=0, rely=0, relwidth=1, relheight=1)
+        background.image = image
 
     # Set icon
     def set_icon(self):
+
         path = "GUI/Images/img.png"
         icon = Image.open(path)
+
+        if icon.mode != "RGB":
+            icon = icon.convert("RGB")
+
         icoPath = "GUI/Images/imgICO.png"
         icon.save(icoPath, format="ICO")
         self.iconbitmap(icoPath)
 
     # Set button click function
     def create_widgets(self):
-        self.btn = tk.Button(self, text="Click me!", command=self.btn_click)
+        self.btn = tk.Button(self, text="TEST", command=self.btn_click)
         self.btn.pack()
 
     # Run mainloop
