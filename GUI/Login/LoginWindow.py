@@ -20,12 +20,14 @@ class LoginWindow(tk.Tk):
         self.setBackground()
         self.loginDisp()
 
+    # Set background
     def setBackground(self):
         image = tk.PhotoImage(file="GUI/Images/img2.png")
         background = tk.Label(self, image=image)
         background.place(x=0, y=0, relwidth=1, relheight=1)
         background.image = image
 
+    # Set icon
     def setIcon(self):
 
         path = "GUI/Images/img.png"
@@ -38,6 +40,7 @@ class LoginWindow(tk.Tk):
         icon.save(icoPath, format="ICO")
         self.iconbitmap(icoPath)
 
+    # Login display TODO change layout
     def loginDisp(self):
         usernameLabel = tk.Label(self, text="Enter your username: ")
         usernameLabel.place(x=0, y=0, anchor=tk.CENTER)
@@ -59,18 +62,23 @@ class LoginWindow(tk.Tk):
         loginButton.place(x=20, y=20, anchor=tk.CENTER)
         loginButton.pack()
 
+    # Login function
     def login(self):
         if (self.usernameEntry.get() == os.environ.get("adName")
                 and self.passwordEntry.get() == os.environ.get("adPass")):
             messagebox.showinfo("Login", "Login successful")
+            self.setNotVisible()
             app = AppGui(self)
             app.run()
-            self.destroy()
-
         else:
             messagebox.showerror("Error", "Incorrect username or password")
             self.usernameEntry.delete(0, tk.END)
             self.passwordEntry.delete(0, tk.END)
 
+    # Run mainloop
     def run(self):
         self.mainloop()
+
+    # Set window to not visible
+    def setNotVisible(self):
+        self.withdraw()
