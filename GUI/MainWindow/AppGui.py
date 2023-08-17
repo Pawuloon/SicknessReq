@@ -3,9 +3,9 @@ from PIL import Image
 
 
 # Class for GUI
-class AppGui(tk.Tk):
-    def __init__(self):
-        super().__init__()
+class AppGui(tk.Toplevel):
+    def __init__(self, master):
+        super().__init__(master=master)
         self.btn_click = None
         self.btn = None
         self.title("Sickness detector")
@@ -13,9 +13,8 @@ class AppGui(tk.Tk):
         self.background()
         self.resizable(False, False)
         self.create_widgets()
-        self.set_icon()
+        self.setIcon()
 
-    # TODO change it into picture later
     # Set background
     def background(self):
         image = tk.PhotoImage(file="GUI/Images/img2.png")
@@ -24,7 +23,7 @@ class AppGui(tk.Tk):
         background.image = image
 
     # Set icon
-    def set_icon(self):
+    def setIcon(self):
 
         path = "GUI/Images/img.png"
         icon = Image.open(path)

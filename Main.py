@@ -1,7 +1,7 @@
-from GUI.AppGui import AppGui
+from GUI.Login.LoginWindow import LoginWindow
 
 
 class Main:
     if __name__ == "__main__":
-        app = AppGui()
-        app.run()
+        login = LoginWindow()
+        login.run()
