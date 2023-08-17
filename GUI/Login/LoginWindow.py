@@ -54,11 +54,11 @@ class LoginWindow(tk.Tk):
         passwordLabel.place(x=10, y=10, anchor=tk.CENTER)
         passwordLabel.pack()
 
-        self.passwordEntry = tk.Entry(self, width=20, bg="yellow")
+        self.passwordEntry = tk.Entry(self, width=20, bg="yellow", show="*")
         self.passwordEntry.place(x=15, y=15, anchor=tk.CENTER)
         self.passwordEntry.pack()
 
-        loginButton = tk.Button(self, text="Login", width=30, height=3, command=self.login, bg="yellow")
+        loginButton = tk.Button(self, text="Login", width=18, height=3, command=self.login, bg="yellow")
         loginButton.place(x=20, y=20, anchor=tk.CENTER)
         loginButton.pack()
 
