@@ -39,7 +39,7 @@ class AppGui(tk.Toplevel):
     # Set button click function
     def create_widgets(self):
         if self.permission == 3:
-            self.btn = tk.Button(self, text="TEST", command=self.btn_click)
+            self.btn = tk.Button(self, text="TEST ADMIN", command=self.btn_click)
             self.btn.pack()
 
     # Run mainloop

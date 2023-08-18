@@ -70,6 +70,7 @@ class LoginWindow(tk.Tk):
             messagebox.showinfo("Login", "Login successful")
             data = DbActions().getUserPermission(self.usernameEntry.get())
             app = AppGui(data[0], self)
+            self.setNotVisible()
             app.run()
         else:
             messagebox.showerror("Error", "Incorrect username or password")
