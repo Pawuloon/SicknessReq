@@ -4,8 +4,9 @@ from PIL import Image
 
 # Class for GUI
 class AppGui(tk.Toplevel):
-    def __init__(self, master):
+    def __init__(self, permission, master):
         super().__init__(master=master)
+        self.permission = permission
         self.btn_click = None
         self.btn = None
         self.title("Sickness detector")
@@ -37,8 +38,9 @@ class AppGui(tk.Toplevel):
 
     # Set button click function
     def create_widgets(self):
-        self.btn = tk.Button(self, text="TEST", command=self.btn_click)
-        self.btn.pack()
+        if self.permission == 3:
+            self.btn = tk.Button(self, text="TEST", command=self.btn_click)
+            self.btn.pack()
 
     # Run mainloop
     def run(self):

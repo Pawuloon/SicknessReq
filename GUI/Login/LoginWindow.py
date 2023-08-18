@@ -4,6 +4,7 @@ from tkinter import messagebox
 
 from PIL import Image
 
+from DB.Operations.DbActions import DbActions
 from GUI.MainWindow.AppGui import AppGui
 
 
@@ -67,8 +68,8 @@ class LoginWindow(tk.Tk):
         if (self.usernameEntry.get() == os.environ.get("adName")
                 and self.passwordEntry.get() == os.environ.get("adPass")):
             messagebox.showinfo("Login", "Login successful")
-            self.setNotVisible()
-            app = AppGui(self)
+            data = DbActions().getUserPermission(self.usernameEntry.get())
+            app = AppGui(data[0], self)
             app.run()
         else:
             messagebox.showerror("Error", "Incorrect username or password")

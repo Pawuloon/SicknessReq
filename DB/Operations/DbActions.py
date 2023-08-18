@@ -3,7 +3,7 @@ import sqlite3 as sql
 
 class DbActions:
     def __init__(self):
-        self.conn = sql.connect('DB/db.db')
+        self.conn = sql.connect('DB/db')
         self.cursor = self.conn.cursor()
 
     # Insert user to database
@@ -14,7 +14,11 @@ class DbActions:
 
     # Get user from database
     def getUser(self, name):
-        self.cursor.execute("SELECT * FROM users WHERE name = ?", (name,))
+        self.cursor.execute("SELECT * FROM Users WHERE name = ?", (name,))
+        return self.cursor.fetchone()
+
+    def getUserPermission(self, name):
+        self.cursor.execute("SELECT permission FROM Users WHERE name = ?", (name,))
         return self.cursor.fetchone()
 
     # Update user permissions
