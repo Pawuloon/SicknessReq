@@ -20,12 +20,14 @@ class AddUserWindow(tk.Toplevel):
 
         self.addUserWidgets()
 
+    # set background
     def background(self):
         image = tk.PhotoImage(file="GUI/Images/img2.png")
         background = tk.Label(self, image=image)
         background.place(relx=0, rely=0, relwidth=1, relheight=1)
         background.image = image
 
+    # set icon
     def setIcon(self):
         path = "GUI/Images/img.png"
         icon = Image.open(path)
@@ -37,6 +39,7 @@ class AddUserWindow(tk.Toplevel):
         icon.save(icoPath, format="ICO")
         self.iconbitmap(icoPath)
 
+    # Add user widgets
     def addUserWidgets(self):
 
         userNameLabel = tk.Label(self, text="Enter user username: ")
@@ -67,10 +70,12 @@ class AddUserWindow(tk.Toplevel):
         buttonAddUser.place(x=30, y=30, anchor=tk.CENTER)
         buttonAddUser.pack()
 
+    # Add user to db and system
     def addUser(self):
         db = DbActions()
         if self.userNameEntry is not None and self.passwordEntry is not None and self.permissionEntry is not None:
             db.insertUser(str(self.userNameEntry.get()), self.passwordEntry.get(), self.permissionEntry.get())
+            messagebox.showinfo("Success", "User added successfully")
         else:
             messagebox.showerror("Error", "Invalid input")
 
