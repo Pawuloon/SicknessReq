@@ -2,12 +2,14 @@ import tkinter as tk
 from PIL import Image
 
 
+from GUI.AddUser.AddUserWindow import AddUserWindow
+
+
 # Class for GUI
 class AppGui(tk.Toplevel):
     def __init__(self, permission, master):
         super().__init__(master=master)
         self.permission = permission
-        self.btn_click = None
         self.btn = None
         self.title("Sickness detector")
         self.geometry("1440x1100")
@@ -39,8 +41,13 @@ class AppGui(tk.Toplevel):
     # Set button click function
     def create_widgets(self):
         if self.permission == 3:
-            self.btn = tk.Button(self, text="TEST ADMIN", command=self.btn_click)
+            self.btn = tk.Button(self, text="Add user", command=self.addUser)
             self.btn.pack()
+
+    # Add user to db and system
+    def addUser(self):
+        ad = AddUserWindow(self)
+        ad.run()
 
     # Run mainloop
     def run(self):

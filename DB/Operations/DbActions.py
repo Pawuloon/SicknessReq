@@ -7,8 +7,9 @@ class DbActions:
         self.cursor = self.conn.cursor()
 
     # Insert user to database
-    def insertUser(self, name, password):
-        self.cursor.execute("INSERT INTO users (name, password) VALUES (?, ?)", (name, password))
+    def insertUser(self, name, password, permission):
+        self.cursor.execute("INSERT INTO users (name, password, permission) VALUES (?, ?, ?)",
+                            (name, password, permission))
         self.conn.commit()
         self.conn.close()
 

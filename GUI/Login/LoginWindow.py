@@ -65,8 +65,9 @@ class LoginWindow(tk.Tk):
 
     # Login function
     def login(self):
-        if (self.usernameEntry.get() == os.environ.get("adName")
-                and self.passwordEntry.get() == os.environ.get("adPass")):
+        db = DbActions()
+        if ((self.usernameEntry.get() == os.environ.get("adName") and self.passwordEntry.get() == os.environ.get("adPass"))
+                or db.getUser(self.usernameEntry.get())):
             messagebox.showinfo("Login", "Login successful")
             data = DbActions().getUserPermission(self.usernameEntry.get())
             app = AppGui(data[0], self)
