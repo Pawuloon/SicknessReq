@@ -3,12 +3,14 @@ from PIL import Image
 
 
 from GUI.AddUser.AddUserWindow import AddUserWindow
+from GUI.SicknessInfo.SicknessWindow import SicknessWindow
 
 
 # Class for GUI
 class AppGui(tk.Toplevel):
     def __init__(self, permission, master):
         super().__init__(master=master)
+        self.btn2 = None
         self.permission = permission
         self.btn = None
         self.title("Sickness detector")
@@ -43,12 +45,17 @@ class AppGui(tk.Toplevel):
         if self.permission == 3:
             self.btn = tk.Button(self, text="Add user", command=self.addUser)
             self.btn.pack()
+            self.btn2 = tk.Button(self, text="Sicknesses", command=self.sicknessesAccess)
+            self.btn2.pack()
 
     # Add user to db and system
     def addUser(self):
         ad = AddUserWindow(self)
         ad.run()
 
+    def sicknessesAccess(self):
+        sc = SicknessWindow(self)
+        sc.run()
     # Run mainloop
     def run(self):
         self.mainloop()
