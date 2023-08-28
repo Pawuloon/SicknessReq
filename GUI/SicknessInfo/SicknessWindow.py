@@ -8,7 +8,7 @@ class SicknessWindow(tk.Toplevel):
     def __init__(self, master):
         super().__init__(master=master)
         self.title("Sickness info")
-        self.geometry("500x400")
+        self.geometry("1440x1000")
         self.resizable(True, True)
         self.setIcon()
         self.background()
@@ -57,12 +57,17 @@ class SicknessWindow(tk.Toplevel):
         self.sicknessInfoEntry.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.6)
         self.sicknessInfoEntry.insert(tk.END, title + "\n\n" + wiki)
 
+        # Title for scrollbar
+        scrollbarTitle = tk.Label(self, text=name, font=("Arial", 12))
+        scrollbarTitle.place(relx=0.9, rely=0.2, relwidth=0.1, relheight=0.1)
+
         # Scrollbar
-        scrollbar = tk.Scrollbar(self)
+        scrollbar = tk.Scrollbar(self, orient="vertical")
         scrollbar.place(relx=0.9, rely=0.3, relwidth=0.1, relheight=0.6)
         scrollbar.config(command=self.sicknessInfoEntry.yview)
         self.sicknessInfoEntry.config(yscrollcommand=scrollbar.set)
 
         self.sicknessEntry.delete(0, tk.END)
+
     def run(self):
         self.mainloop()

@@ -1,7 +1,6 @@
 import tkinter as tk
 from PIL import Image
 
-
 from GUI.AddUser.AddUserWindow import AddUserWindow
 from GUI.SicknessInfo.SicknessWindow import SicknessWindow
 
@@ -10,6 +9,7 @@ from GUI.SicknessInfo.SicknessWindow import SicknessWindow
 class AppGui(tk.Toplevel):
     def __init__(self, permission, master):
         super().__init__(master=master)
+        self.protocol("WM_DELETE_WINDOW", self.master.destroy)
         self.btn2 = None
         self.permission = permission
         self.btn = None
@@ -56,6 +56,7 @@ class AppGui(tk.Toplevel):
     def sicknessesAccess(self):
         sc = SicknessWindow(self)
         sc.run()
+
     # Run mainloop
     def run(self):
         self.mainloop()
