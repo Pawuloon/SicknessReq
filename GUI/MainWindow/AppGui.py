@@ -1,7 +1,7 @@
 import tkinter as tk
 from PIL import Image
 
-from GUI.AddUser.AddUserWindow import AddUserWindow
+from GUI.UsersActions.AddUserWindow import AddUserWindow
 from GUI.SicknessInfo.SicknessWindow import SicknessWindow
 
 

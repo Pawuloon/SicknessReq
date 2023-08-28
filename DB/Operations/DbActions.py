@@ -28,6 +28,10 @@ class DbActions:
         self.conn.commit()
         self.conn.close()
 
+    def getUsers(self):
+        self.cursor.execute("SELECT name,permission FROM Users")
+        return self.cursor.fetchall()
+
     # Sicknesses part of db ops
 
     # Add sickness to database
