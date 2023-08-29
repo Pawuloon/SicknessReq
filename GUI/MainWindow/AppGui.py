@@ -3,12 +3,14 @@ from PIL import Image
 
 from GUI.UsersActions.AddUserWindow import AddUserWindow
 from GUI.SicknessInfo.SicknessWindow import SicknessWindow
+from GUI.UsersActions.CheckUsersWindow import CheckUsersWindow
 
 
 # Class for GUI
 class AppGui(tk.Toplevel):
     def __init__(self, permission, master):
         super().__init__(master=master)
+        self.btn3 = None
         self.protocol("WM_DELETE_WINDOW", self.master.destroy)
         self.btn2 = None
         self.permission = permission
@@ -47,12 +49,19 @@ class AppGui(tk.Toplevel):
             self.btn.pack()
             self.btn2 = tk.Button(self, text="Sicknesses", command=self.sicknessesAccess)
             self.btn2.pack()
+            self.btn3 = tk.Button(self, text="Check users", command=self.checkUsers)
+            self.btn3.pack()
+
+    def checkUsers(self):
+        us = CheckUsersWindow(self)
+        us.run()
 
     # Add user to db and system
     def addUser(self):
         ad = AddUserWindow(self)
         ad.run()
 
+    # Check sicknesses
     def sicknessesAccess(self):
         sc = SicknessWindow(self)
         sc.run()

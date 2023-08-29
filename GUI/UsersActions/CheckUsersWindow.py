@@ -10,16 +10,17 @@ class CheckUsersWindow(tk.Toplevel):
 
     def __init__(self, master):
         super().__init__(master=master)
-        self.users = None
+        self.users = tk.StringVar()
+        self.passwordEntry = None
+        self.userNameEntry = None
+        self.permissionEntry = None
+        self.optionVariable = None
+
         self.geometry("1440x1100")
         self.title("Check users")
         self.resizable(False, False)
         self.setIcon()
         self.background()
-        self.passwordEntry = None
-        self.userNameEntry = None
-        self.permissionEntry = None
-
         self.addUserWidgets()
 
     def background(self):
@@ -39,13 +40,23 @@ class CheckUsersWindow(tk.Toplevel):
         icon.save(icoPath, format="ICO")
         self.iconbitmap(icoPath)
 
-    # TODO: add option to choose user from db in order to check info about them
     # option to choose user from db in order to check info about them
     def addUserWidgets(self):
-        label = tk.Label(self, text="Choose user to check")
-        scrollOption = ttk.OptionMenu(self, *self.users, command=self.getUsers())
+        data = DbActions().getUsers()
 
-    def getUsers(self):
-        db = DbActions()
-        self.users = db.getUsers()
-        return self.users
+        label = tk.Label(self, text="Choose user to check")
+        label.pack()
+
+
+        self.optionVariable = tk.StringVar(self)
+        scrollOption = ttk.OptionMenu(self, self.optionVariable, *data, command=self.optionGet)
+        scrollOption.config(width=20)
+        scrollOption.pack()
+
+    def optionGet(self, *args):
+        currSelection = self.optionVariable.get()
+        self.users.set(currSelection)
+
+    # Run window
+    def run(self):
+        self.mainloop()
