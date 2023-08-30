@@ -57,3 +57,12 @@ class DbActions:
                             (description, symptoms, treatment, name))
         self.conn.commit()
         self.conn.close()
+
+    # Patients part of db ops
+
+    # Add patient to database
+    def addPatient(self, name, surname, age, sickness, symptoms):
+        self.cursor.execute("INSERT INTO Patients (name, surname, age, sickness, symptoms) VALUES (?, ?, ?, ?, ?)",
+                            (name, surname, age, sickness, symptoms))
+        self.conn.commit()
+        self.conn.close()
