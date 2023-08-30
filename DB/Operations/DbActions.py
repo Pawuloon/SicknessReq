@@ -29,7 +29,7 @@ class DbActions:
         self.conn.close()
 
     def getUsers(self):
-        self.cursor.execute("SELECT name,permission FROM Users")
+        self.cursor.execute("SELECT name FROM Users")
         return self.cursor.fetchall()
 
     # Sicknesses part of db ops
